@@ -8,8 +8,8 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   instance:
-    preferIpAddress: true
-#    hostname: localhost
+#    preferIpAddress: true
+    hostname: localhost
   server:
     renewal-percent-threshold: 0.49
     eviction-interval-timer-in-ms: 1000
