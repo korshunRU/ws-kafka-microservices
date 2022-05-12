@@ -1,0 +1,15 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    preferIpAddress: true
+#    hostname: localhost
+  server:
+    renewal-percent-threshold: 0.49
+    eviction-interval-timer-in-ms: 1000

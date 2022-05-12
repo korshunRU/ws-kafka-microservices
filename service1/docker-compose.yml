@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_DATABASE=sessiondb
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    restart: always
+    container_name: web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  service1:
+    image: service1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: service1
+    ports:
+      - "0:0"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://host.docker.internal:3306/sessiondb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+    depends_on:
+      - db

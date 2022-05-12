@@ -1,0 +1,19 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:9001/eureka/
+
+ws:
+  server: http://host.docker.internal:9000/websocket-service1/ws
+  topic: /topic/mc1-mc2
+
+spring:
+  kafka:
+
+    topic: message
+
+    producer:
+      bootstrap-servers: host.docker.internal:9092

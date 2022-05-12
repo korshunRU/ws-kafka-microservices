@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-sessions
+      author: k0rshun
+      changes:
+        - createTable:
+            tableName: sessions
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: session_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mc1_timestamp
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mc2_timestamp
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mc3_timestamp
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_timestamp
+                  type: bigint
+                  constraints:
+                    nullable: false

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: service3
+  profiles:
+    active: prod

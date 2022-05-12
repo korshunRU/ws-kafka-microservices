@@ -1,0 +1,21 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:9001/eureka/
+
+spring:
+  kafka:
+
+    topic: message
+    group-id: mc3
+
+    consumer:
+      bootstrap-servers: host.docker.internal:9092
+      properties:
+        spring.json.trusted.packages: "*"
+
+mc1:
+  url: http://service1/v1/fromMC3

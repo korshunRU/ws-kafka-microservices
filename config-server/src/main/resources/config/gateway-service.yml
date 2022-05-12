@@ -1,0 +1,63 @@
+server:
+  port: 9000
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:9001/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+
+spring:
+  cloud:
+    gateway:
+
+      filter:
+        remove-non-proxy-headers:
+          headers:
+            - Proxy-Authenticate
+            - Proxy-Authorization
+            - Keep-Alive
+            - TE
+            - Trailer
+            - Transfer-Encoding
+
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+
+      routes:
+
+        - id: service1-start
+          uri: lb://service1
+          predicates:
+            - Path=/v1/start/**
+            - Method=GET
+          filters:
+            - RewritePath=/v1/start/(?<path>.*), /$\{path}
+
+        - id: service1-stop
+          uri: lb://service1
+          predicates:
+            - Path=/v1/stop/**
+            - Method=GET
+          filters:
+            - RewritePath=/v1/stop/(?<path>.*), /$\{path}
+
+        - id: websocket_route1
+          uri: lb://service1
+          predicates:
+            - Path=/websocket-service1/ws/info/**
+            - Method=GET
+
+        - id: websocket_route2
+          uri: lb:ws://service1
+          predicates:
+            - Path=/websocket-service1/ws/**
+            - Method=GET
