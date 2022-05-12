@@ -2,4 +2,4 @@ spring:
   application:
     name: discovery-service
   profiles:
-    active: prod
+    active: dev

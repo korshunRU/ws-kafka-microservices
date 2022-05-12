@@ -2,4 +2,4 @@ spring:
   application:
     name: service1
   profiles:
-    active: prod
+    active: dev

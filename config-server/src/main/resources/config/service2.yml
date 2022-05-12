@@ -4,10 +4,10 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://host.docker.internal:9001/eureka/
+      defaultZone: http://localhost:9001/eureka/
 
 ws:
-  server: http://host.docker.internal:9000/websocket-service1/ws
+  server: http://localhost:9000/websocket-service1/ws
   topic: /topic/mc1-mc2
 
 spring:
@@ -16,4 +16,4 @@ spring:
     topic: message
 
     producer:
-      bootstrap-servers: host.docker.internal:9092
+      bootstrap-servers: localhost:9092

@@ -6,7 +6,7 @@ eureka:
     preferIpAddress: true
   client:
     serviceUrl:
-      defaultZone: http://host.docker.internal:9001/eureka/
+      defaultZone: http://localhost:9001/eureka/
 
 ws:
   topic: /topic/mc1-mc2
@@ -34,7 +34,7 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
 
   datasource:
-    url: jdbc:mariadb://host.docker.internal:3306/sessiondb
+    url: jdbc:mariadb://localhost:3306/sessiondb
     username: root
     password: root
     driver-class-name: org.mariadb.jdbc.Driver
